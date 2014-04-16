@@ -2,6 +2,7 @@
 	"name":"MengXia's Professional Web",
 	"dependencies":{
 		"express":"*",
+		"express-redirect":"*",
 		"jade":"*",
 		"mysql":"*",
 		"should":"*",

@@ -5,7 +5,7 @@ var path = require('path');
 var app = express();
 redirect(app);
 
-	app.set('port', process.env.PORT || 8000);
+	app.set('port', process.env.PORT || 80);
 	app.set('views', __dirname + '/views');
 	app.set('view engine', 'jade');
 	//favicon is removed. could use https://www.npmjs.org/package/static-favicon

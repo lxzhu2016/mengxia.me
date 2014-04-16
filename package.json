@@ -1,5 +1,5 @@
 {
-	"name":"MengXia's Professional Web",
+	"name":"MengXiaPW",
 	"dependencies":{
 		"express":"*",
 		"express-redirect":"*",

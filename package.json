@@ -1,0 +1,12 @@
+{
+	"name":"MengXia's Professional Web",
+	"dependencies":{
+		"express":"*",
+		"jade":"*",
+		"mysql":"*",
+		"should":"*",
+		"async":"*",
+		"mocha":"*",
+		"mime":"*"
+	}
+}

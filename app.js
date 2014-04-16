@@ -3,7 +3,7 @@ var redirect=require('express-redirect');
 var http = require('http');
 var path = require('path');
 var app = express();
-redirect(app);
+
 app.configure(function() {
 	app.set('port', process.env.PORT || 8000);
 	app.set('views', __dirname + '/views');
@@ -24,7 +24,7 @@ app.configure(function() {
 app.configure('development', function() {
 	app.use(express.errorHandler());
 });
-app.redirect("/","/pubs/index.htm");
+
 
 app.get('/view/:view', function(req, res) {
 	res.render(req.params.view, {

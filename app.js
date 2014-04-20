@@ -1,9 +1,10 @@
 var express = require('express');
-var bodyParser=require('body-parser');
-var cookieParser=require('cookie-parser');
+var bodyParser = require('body-parser');
+var cookieParser = require('cookie-parser');
 var redirect = require('express-redirect');
 var http = require('http');
 var path = require('path');
+var api = require('./lib/api');
 var app = express();
 redirect(app);
 
@@ -40,12 +41,10 @@ app.get('/views/:view', function(req, res) {
 	});
 });
 
-app.post('/api/proto_product_code/add',
+app.post('/api/proto_product_code/add', api.proto_product_code.add);
 
 http.createServer(app).listen(app.get('port'), function(error) {
 	if (error) {
 		console.log(error);
-	} else {
-		console.log('server is running on port ' + app.get('port'));
-	}
+	} 
 });

@@ -7,7 +7,7 @@ var path = require('path');
 var app = express();
 redirect(app);
 
-app.set('port', process.env.PORT || 80);
+app.set('port', process.env.PORT || 8080);
 app.set('views', __dirname + '/views');
 app.set('view engine', 'jade');
 //favicon is removed. could use https://www.npmjs.org/package/static-favicon
@@ -18,8 +18,8 @@ app.set('view engine', 'jade');
 //TODO: how to config it to allow url rewrite?
 //app.use(express.urlencoded());
 //app.use(express.query());
-app.use(express.cookieParser);
-app.use(bodyParser);
+//app.use(express.cookieParser);
+//app.use(bodyParser);
 //app.use(express.methodOverride());
 //app.use(app.router);
 app.use('/pubs', express.static(path.join(__dirname, 'pubs')));
@@ -40,7 +40,6 @@ app.get('/views/:view', function(req, res) {
 	});
 });
 
-app.post('/api/proto_product_code/add',
 
 http.createServer(app).listen(app.get('port'), function(error) {
 	if (error) {

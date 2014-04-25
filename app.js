@@ -4,6 +4,7 @@ var cookieParser=require('cookie-parser');
 var redirect = require('express-redirect');
 var http = require('http');
 var path = require('path');
+var api_news=require('./lib/api.news.js');
 var app = express();
 redirect(app);
 
@@ -28,6 +29,7 @@ app.use('/pubs', express.static(path.join(__dirname, 'pubs')));
 //app.use(express.errorHandler());
 
 app.redirect('/', '/pubs/index.htm');
+api_news.route(app);
 /*
 app.get('/',function(req,res){
   res.writeHead(200,{'Content-Type':'text/html'});

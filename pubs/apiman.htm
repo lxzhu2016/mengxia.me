@@ -1,0 +1,33 @@
+<html>
+	<head>
+		<script type="text/javascript" src="scripts/jquery-2.1.0.js"></script>
+		<script type="text/javascript">
+			$(document).ready(function(){
+				$('#btnExec').click(function(){
+					$.ajax({
+						url:$('#ajaxUrl').val(),
+						method:$('#ajaxMethod').val(),
+						data:$('#data').val(),
+						contentType:'application/json',
+						dataType:'json',
+						success:function(statuscode,data,xhr){
+							$('#result').val(data);
+						},
+						error:function(statuscode,data,xhr){
+							$('#result').val(data);
+						}
+					});
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div >
+			<p> URL:<input type="text" id="ajaxUrl" val="http://115.28.215.49/api/"></p>
+			<p> method: <input type="test" id="ajaxMethod" value="post"/></p>
+			<p> data:<textarea id="data" rows="6" cols="80"/></p>
+			<p> result:</textarea id="result" rows="6" cols="80"/></p>
+			<p> <input type="button" id="btnExec" value="Exec"/>
+		</div>
+	</body>
+</html>

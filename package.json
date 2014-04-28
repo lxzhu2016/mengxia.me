@@ -3,6 +3,8 @@
 	"dependencies":{
 		"express":"*",
 		"express-redirect":"*",
+		"body-parser":"*",
+		"cookie-parser":"*",
 		"jade":"*",
 		"mysql":"*",
 		"should":"*",

@@ -19,8 +19,8 @@ app.set('view engine', 'jade');
 //TODO: how to config it to allow url rewrite?
 //app.use(express.urlencoded());
 //app.use(express.query());
-//app.use(express.cookieParser);
-//app.use(bodyParser);
+app.use(cookieParser());
+app.use(bodyParser());
 //app.use(express.methodOverride());
 //app.use(app.router);
 app.use('/pubs', express.static(path.join(__dirname, 'pubs')));
@@ -46,7 +46,5 @@ app.get('/views/:view', function(req, res) {
 http.createServer(app).listen(app.get('port'), function(error) {
 	if (error) {
 		console.log(error);
-	} else {
-		console.log('server is running on port ' + app.get('port'));
 	}
 });

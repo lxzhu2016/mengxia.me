@@ -2,17 +2,18 @@ drop database mengxia_me;
 create database mengxia_me;
 use mengxia_me;
 
-#ÏµÍ³ÖĞµÄÅäÖÃÏî
+#ç³»ç»Ÿä¸­çš„é…ç½®é¡¹
 create table sys_config(
 	k nvarchar(255) not null,
 	v nvarchar(255)  null
 );
-#ĞéÄâÎÄ¼şÏµÍ³µÄÈë¿Úµã
+
+#è™šæ‹Ÿæ–‡ä»¶ç³»ç»Ÿçš„å…¥å£ç‚¹
 create table virtual_dirs(
 	id int not null,
 	url nvarchar(100) not null
 );
-#ĞéÄâÎÄ¼ş
+#è™šæ‹Ÿæ–‡ä»¶
 create table virtual_file(
 	id bigint not null,
 	dir_id int,
@@ -23,7 +24,7 @@ create table virtual_file(
 	modified_on datetime not null		
 );
 
-#ÏµÍ³ÖĞËùÓĞµÄÓÃ»§
+#ç³»ç»Ÿä¸­æ‰€æœ‰çš„ç”¨æˆ·
 create table user(
 	id bigint auto_increment primary key,
 	username nvarchar(255) not null,
@@ -31,22 +32,22 @@ create table user(
 	nickname nvarchar(32) not null,
 	email nvarchar(255) not null
 );
-#ÓÃ»§µÄ»ù±¾ĞÅÏ¢
+#ç”¨æˆ·çš„åŸºæœ¬ä¿¡æ¯
 create table user_profile(
 	user_id bigint not null,
 	thumbnail_file_id bigint
 );
-#µØÇøÁĞ±í
+#åœ°åŒºåˆ—è¡¨
 create table sys_region(
-	id int not null, #µØÇøÔÚ±¾ÏµÍ³ÖĞµÄid
-	level smallint not null,#µØÇøµÄ¼¶±ğ£¬·ÖÎª¹ú¼Ò(0)/Ê¡(1)/³ÇÊĞ(2)/ÏØ(3)/½ÖµÀ(ÏçÕò)(4)/¾ÓÎ¯»á(´å)(5)
-	code nvarchar(100) , #±ê×¼±àÂë,Èç¹ú¼Ò±àÂë£¬ÖĞ¹úµÄĞĞÕşÇø±àÂëµÈ
-	name nvarchar(100) not null, #Ãû³Æ,ÏµÍ³ËùÊ¹ÓÃµÄÓïÑÔÏÂµÄÃû³Æ£¬ÈçÔÚÖĞ¹ú²¿Êğ£¬ÔòÎŞÂÛ¸ÃµØÇøÔÚÄÄ¸ö¹ú¼Ò,´Ë´¦¶¼ÌîĞ´ººÓï
-	local_name nvarchar(100) not null,#¸Ã¹ú¼Ò±¾µØÓïÑÔÖĞµÄÃû³Æ
-	parent_id int null #ÉÏ¼¶regionµÄid,ÉÏ¼¶regionµÄlevel±ØĞë±ÈÏÂ¼¶regionµÄlevelÊı×ÖĞ¡.
+	id int not null, #åœ°åŒºåœ¨æœ¬ç³»ç»Ÿä¸­çš„id
+	level smallint not null,#åœ°åŒºçš„çº§åˆ«ï¼Œåˆ†ä¸ºå›½å®¶(0)/çœ(1)/åŸå¸‚(2)/å¿(3)/è¡—é“(ä¹¡é•‡)(4)/å±…å§”ä¼š(æ‘)(5)
+	code nvarchar(100) , #æ ‡å‡†ç¼–ç ,å¦‚å›½å®¶ç¼–ç ï¼Œä¸­å›½çš„è¡Œæ”¿åŒºç¼–ç ç­‰
+	name nvarchar(100) not null, #åç§°,ç³»ç»Ÿæ‰€ä½¿ç”¨çš„è¯­è¨€ä¸‹çš„åç§°ï¼Œå¦‚åœ¨ä¸­å›½éƒ¨ç½²ï¼Œåˆ™æ— è®ºè¯¥åœ°åŒºåœ¨å“ªä¸ªå›½å®¶,æ­¤å¤„éƒ½å¡«å†™æ±‰è¯­
+	local_name nvarchar(100) not null,#è¯¥å›½å®¶æœ¬åœ°è¯­è¨€ä¸­çš„åç§°
+	parent_id int null #ä¸Šçº§regionçš„id,ä¸Šçº§regionçš„levelå¿…é¡»æ¯”ä¸‹çº§regionçš„levelæ•°å­—å°.
 );
-#ÓÃ»§µÄµØÖ·
-#ÈßÓà´æ´¢ÁËidºÍname,idÓÃÓÚË÷ÒıºÍ¿ìËÙ¶¨Î».
+#ç”¨æˆ·çš„åœ°å€
+#å†—ä½™å­˜å‚¨äº†idå’Œname,idç”¨äºç´¢å¼•å’Œå¿«é€Ÿå®šä½.
 create table user_address(
 	user_id bigint not null,
 	country_name nvarchar(100) not null,
@@ -64,42 +65,42 @@ create table user_address(
 	address_line nvarchar(100),
 	postal_code nvarchar(20)
 );
-#ÏµÍ³ÖĞËùÓĞµÄÓÃ»§·Ö×é
-create table group(
+#ç³»ç»Ÿä¸­æ‰€æœ‰çš„ç”¨æˆ·åˆ†ç»„
+create table role_type(
 	id int not null primary key,
 	name nvarchar(32) not null
 );
-#ÓÃ»§ËùÔÚµÄ×é
-create table user_group(
+#ç”¨æˆ·æ‰€åœ¨çš„ç»„
+create table role(
 	user_id bigint not null,
-	group_id int not null
+	role_type_id int not null
 );
 
-#²úÆ·¹¤Òµ·ÖÀà
+#äº§å“å·¥ä¸šåˆ†ç±»
 create table product_class(
 	id int not null,
 	name nvarchar(100),
-	#À©Õ¹ĞÅÏ¢±í
+	#æ‰©å±•ä¿¡æ¯è¡¨
 	extension_table nvarchar(100),
-	web_view_class nvarchar(200) #web¿Í»§¶ËÓ¦¸ÃÀí½âÕâ¸ö×Ö·û´®´Ó¶ø×ö³öÕıÈ·µÄäÖÈ¾Ñ¡Ôñ.
+	web_view_class nvarchar(200) #webå®¢æˆ·ç«¯åº”è¯¥ç†è§£è¿™ä¸ªå­—ç¬¦ä¸²ä»è€Œåšå‡ºæ­£ç¡®çš„æ¸²æŸ“é€‰æ‹©.
 );
 
-#²úÆ·µÄ»ù±¾ĞÅÏ¢
+#äº§å“çš„åŸºæœ¬ä¿¡æ¯
 create table product(
 	id bigint auto_increment primary key,
 	product_class_id int not null,
 	name nvarchar(100) not null,
 	rating_stars smallint not null,
-	market_price double not null, #ÊĞ³¡¼Û
-	unit_price double not null #µ¥¼Û,´Ë¼Û¸ñÓÉÏµÍ³ÈÎÎñ¸ù¾İproduct_price_list¶¨Ê±¸üĞÂ. 	
+	market_price double not null, #å¸‚åœºä»·
+	unit_price double not null #å•ä»·,æ­¤ä»·æ ¼ç”±ç³»ç»Ÿä»»åŠ¡æ ¹æ®product_price_listå®šæ—¶æ›´æ–°. 	
 );
-#¸Ã²úÆ·µÄ¶îÍâ±êÇ©
+#è¯¥äº§å“çš„é¢å¤–æ ‡ç­¾
 create table product_tag(
    product_id bigint not null,
    tag_name nvarchar(100) not null,
    tag_count int not null
 );
-#²úÆ·µÄÆÀ¼Û
+#äº§å“çš„è¯„ä»·
 create table product_rating(
 	product_id bigint not null,
 	customer_id bigint not null,
@@ -112,64 +113,64 @@ create table product_rating(
 	unlike_count int not null
 );
 
-#²úÆ·ÆÀ¼ÛµÄÍ³¼ÆĞÅÏ¢
+#äº§å“è¯„ä»·çš„ç»Ÿè®¡ä¿¡æ¯
 create table product_rating_stat(
   product_id bigint not null primary key,
-  good_count int not null, #4»òÕß5ĞÇµÄÆÀ¼ÛÎªºÃÆÀ
-  middle_count int not null,#2»òÕß3ĞÇÎªÖĞÆÀ
-  bad_count int not null #1ĞÇÎª²îÆÀ
+  good_count int not null, #4æˆ–è€…5æ˜Ÿçš„è¯„ä»·ä¸ºå¥½è¯„
+  middle_count int not null,#2æˆ–è€…3æ˜Ÿä¸ºä¸­è¯„
+  bad_count int not null #1æ˜Ÿä¸ºå·®è¯„
 );
-#Êé¼®(Ò»ÖÖ²úÆ·)µÄÀ©Õ¹±í
+#ä¹¦ç±(ä¸€ç§äº§å“)çš„æ‰©å±•è¡¨
 create table product_book(
 	product_id bigint not null primary key,
-	published_on datetime not null, #³ö°æÈÕÆÚ
-	page_count int not null, #Ò³Êı
+	published_on datetime not null, #å‡ºç‰ˆæ—¥æœŸ
+	page_count int not null, #é¡µæ•°
 	isbn nvarchar(100), #isbn
-	language nvarchar(100), #ÓïÑÔ
-	paper_size nvarchar(10), #¿ª±¾
-	paper_type nvarchar(10),#Ö½ÕÅ
-	version_number int, #°æ´Î
-	print_number int ,#Ó¡´Î	
+	language nvarchar(100), #è¯­è¨€
+	paper_size nvarchar(10), #å¼€æœ¬
+	paper_type nvarchar(10),#çº¸å¼ 
+	version_number int, #ç‰ˆæ¬¡
+	print_number int #å°æ¬¡	
 );
-#Êé¼®µÄ½éÉÜĞÅÏ¢
+#ä¹¦ç±çš„ä»‹ç»ä¿¡æ¯
 create table product_book_intro(
-	product_id bigint not null primary key, #Êé¼®µÄ²úÆ·id
-	title nvarchar(100) not null, #½éÉÜĞÅÏ¢µÄtitle Èç±à¼­½éÉÜ,×÷Õß½éÉÜ£¬»ñ½±ĞÅÏ¢
-	intro nvarchar(2000) not null, #½éÉÜĞÅÏ¢µÄÄÚÈİ
-	intro_order int not null  #½éÉÜĞÅÏ¢µÄÏÔÊ¾´ÎĞò
+	product_id bigint not null primary key, #ä¹¦ç±çš„äº§å“id
+	title nvarchar(100) not null, #ä»‹ç»ä¿¡æ¯çš„title å¦‚ç¼–è¾‘ä»‹ç»,ä½œè€…ä»‹ç»ï¼Œè·å¥–ä¿¡æ¯
+	intro nvarchar(2000) not null, #ä»‹ç»ä¿¡æ¯çš„å†…å®¹
+	intro_order int not null  #ä»‹ç»ä¿¡æ¯çš„æ˜¾ç¤ºæ¬¡åº
 );
 
-#Êé¼®ºÍ×÷Õß£¬ÒëÕßµÄ¹ØÏµ±í£¬´Ë±íÎªÏµÍ³ÖĞÓÃµ½µÄÔ­Ê¼Êı¾İ.
+#ä¹¦ç±å’Œä½œè€…ï¼Œè¯‘è€…çš„å…³ç³»è¡¨ï¼Œæ­¤è¡¨ä¸ºç³»ç»Ÿä¸­ç”¨åˆ°çš„åŸå§‹æ•°æ®.
 create table product_book_author(
 	product_id bigint not null primary key,
 	author_id bigint not null,
-	author_type smallint not null, 0 ±íÊ¾×÷Õß£¬1±íÊ¾·­Òë,2±íÊ¾ÆäËü
+	author_type smallint not null # 0 è¡¨ç¤ºä½œè€…ï¼Œ1è¡¨ç¤ºç¿»è¯‘,2è¡¨ç¤ºå…¶å®ƒ
 );
-#Êé¼®ÓĞ¹ØµÄÊÓÍ¼±í(Ô½µÈÓÚ´æ´¢ÊÓÍ¼,µ«ÊÇÓÉ´úÂëÉú³É)
+#ä¹¦ç±æœ‰å…³çš„è§†å›¾è¡¨(è¶Šç­‰äºå­˜å‚¨è§†å›¾,ä½†æ˜¯ç”±ä»£ç ç”Ÿæˆ)
 create table product_view_book(
 	product_id bigint not null primary key,
-	authors nvarchar(400) not null, #×÷ÕßÃû³ÆÁĞ±í£¬Ê¹ÓÃÈçÏÂ¸ñÊ½[{"I{id}":""},...]µÄ¸ñÊ½£¬Èç[I4:"ÖìÁ¼ĞÛ"],±íÊ¾×÷ÕßÎªÖìÁ¼ĞÛ,ÖìÁ¼ĞÛµÄidÎª4.
-	translator nvarchar(400) not null, #ÒëÕßÃû³ÆÁĞ±í£¬Ê¹ÓÃºÍ×÷ÕßÁĞ±íÒ»ÑùµÄ¸ñÊ½.
+	authors nvarchar(400) not null, #ä½œè€…åç§°åˆ—è¡¨ï¼Œä½¿ç”¨å¦‚ä¸‹æ ¼å¼[{"I{id}":""},...]çš„æ ¼å¼ï¼Œå¦‚[I4:"æœ±è‰¯é›„"],è¡¨ç¤ºä½œè€…ä¸ºæœ±è‰¯é›„,æœ±è‰¯é›„çš„idä¸º4.
+	translator nvarchar(400) not null #è¯‘è€…åç§°åˆ—è¡¨ï¼Œä½¿ç”¨å’Œä½œè€…åˆ—è¡¨ä¸€æ ·çš„æ ¼å¼.
 );
 
-#²úÆ·¼Û¸ñ±í
+#äº§å“ä»·æ ¼è¡¨
 create table product_price_list(
 	product_id bigint not null,
-	start_date datetime not null, #¾«¶ÈÎª·ÖÖÓ
-	end_date datetime not null, #¾«¶ÈÎª·ÖÖÓ
+	start_date datetime not null, #ç²¾åº¦ä¸ºåˆ†é’Ÿ
+	end_date datetime not null, #ç²¾åº¦ä¸ºåˆ†é’Ÿ
 	price double not null
 );
-#¶©µ¥
+#è®¢å•
 create table sales_booking(
 	id bigint auto_increment primary key,
 	customer_id bigint not null,
 	customer_address_id bigint not null,
-	#×îÖØÒªµÄÊ±¼ä½Úµã
+	#æœ€é‡è¦çš„æ—¶é—´èŠ‚ç‚¹
 	created_on datetime not null,
 	paid_on datetime,
 	received_on datetime
 );
-#¶©µ¥²úÆ·Ïî
+#è®¢å•äº§å“é¡¹
 create table sales_booking_item(
 	id bigint auto_increment primary key,
 	booking_id bigint not null,
@@ -179,29 +180,29 @@ create table sales_booking_item(
 	line_price double not null
 );
 
-#¶©µ¥¶îÍâ·ÑÓÃ(ÕÛ¿ÛÒ²ÊÇfeeµÄÒ»ÖÖ)
+#è®¢å•é¢å¤–è´¹ç”¨(æŠ˜æ‰£ä¹Ÿæ˜¯feeçš„ä¸€ç§)
 create table sales_booking_fee(
 	id bigint auto_increment primary key,
 	booking_id bigint not null,
-	fee_type_id int, #fee_type_id ºÍfee_type_name¶ÔÓ¦£¬µ«ÊÇÒ²¿ÉÒÔÖ»ÓĞfee_type_name¶øÃ»ÓĞfee_type_id
+	fee_type_id int, #fee_type_id å’Œfee_type_nameå¯¹åº”ï¼Œä½†æ˜¯ä¹Ÿå¯ä»¥åªæœ‰fee_type_nameè€Œæ²¡æœ‰fee_type_id
 	fee_type_name nvarchar(100),
 	fee_amount double not null
 );
 
-#²Ö¿â
+#ä»“åº“
 create table product_warehouse(
 	id int not null,
 	name nvarchar(100)
 );
 
-#¿â´æÁ¿
+#åº“å­˜é‡
 create table proto_product_stock(
 	product_id bigint not null,
 	warehouse_id int not null,
 	amount double not null
 );
 
-# Èë¿âµ¥
+# å…¥åº“å•
 create table proto_product_stockin(
 	product_id bigint not null,
 	warehouse_id int not null,
@@ -210,9 +211,13 @@ create table proto_product_stockin(
 	total_price double not null
 );
 
-# ³ö¿âµ¥
+# å‡ºåº“å•
 create table proto_product_stockout(
-	
+	product_id bigint not null,
+	warehouse_id int not null,
+	amount double not null,
+	unit_price double not null,
+	total_price double not null
 );
 
 

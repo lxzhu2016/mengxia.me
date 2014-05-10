@@ -5,7 +5,7 @@ var cookieParser=require('cookie-parser');
 var redirect = require('express-redirect');
 var http = require('http');
 var path = require('path');
-var api_news=require('./lib/api.news.js');
+var api_news=require('./libs/api.news.js');
 var app = express();
 redirect(app);
 
